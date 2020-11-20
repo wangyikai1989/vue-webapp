@@ -28,7 +28,7 @@
       <!-- 轮播图 -->
     <van-swipe :autoplay="3000">
         <van-swipe-item v-for="item in images" :key="item.id">
-            <img v-lazy="item.src" />
+            <img v-lazy="$img.imgBaseUrl+item.img" />
         </van-swipe-item>
     </van-swipe>
 
@@ -97,12 +97,7 @@ export default {
                 {id:8,name:'云南白药5'},
                 {id:9,name:'云南白药9'},
             ],
-            images:[
-                {id:1,src:'//m.360buyimg.com/mobilecms/s700x280_jfs/t1/128067/4/10158/85966/5f3e6352Ebc10ea41/13d196f6fb00270c.jpg!cr_1125x445_0_171!q70.jpg.dpg'},
-                {id:2,src:'//m.360buyimg.com/mobilecms/s700x280_jfs/t1/143074/8/14401/135095/5fae38f3E17f01a07/3962bccf40f256ef.jpg!q70.jpg.dpg'},
-                {id:3,src:'//m.360buyimg.com/mobilecms/s700x280_jfs/t1/128067/4/10158/85966/5f3e6352Ebc10ea41/13d196f6fb00270c.jpg!cr_1125x445_0_171!q70.jpg.dpg'},
-                {id:4,src:'//m.360buyimg.com/mobilecms/s700x280_jfs/t1/134313/37/13933/85757/5f9a96f2E1abe0978/3f506cc0ec080983.jpg!q70.jpg.dpg'}
-            ],
+            images:[],
             list: [],
             loading: false,
             finished: false,
@@ -116,6 +111,9 @@ export default {
     mounted(){
         // 页面初始化
         this.getList()
+        this.$api.fetchAdList({}).then(res=>{
+            this.images = res.list
+        })
     },
     computed:{
         placeText:function(){

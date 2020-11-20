@@ -94,6 +94,14 @@ export function fetchSubmitCart(data) {
   })
 }
 
+// 获取轮播图列表
+export function fetchAdList(params) {
+  return fetch({
+    url: '/api/v1/ad/list',
+    method: 'GET',
+    params
+  })
+}
 
 export default{
     fetchGoodList,
@@ -105,5 +113,6 @@ export default{
     fetchCart,
     fetchUpdCart,
     fetchDelCart,
-    fetchSubmitCart
+    fetchSubmitCart,
+    fetchAdList
 }
