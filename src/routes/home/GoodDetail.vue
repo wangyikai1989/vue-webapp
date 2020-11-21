@@ -23,7 +23,8 @@
 import {
   GoodsAction, 
   GoodsActionIcon, 
-  GoodsActionButton
+  GoodsActionButton,
+  Toast
 } from 'vant'
 export default {
   name:'GoodDetail',
@@ -60,7 +61,12 @@ export default {
       }
       this.$api.fetchAddCart(data).then(res=>{
         console.log('加入购物车成功',res)
-        this.$router.replace('/cart')
+        if(localStorage.getItem('token')){
+          Toast('加入购物车成功')
+          setTimeout(()=>{
+            this.$router.replace('/cart')
+          },500)
+        }
       })
     }
   }

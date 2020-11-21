@@ -21,11 +21,11 @@
         <van-col span="20" offset="4">
           <van-card
             :num="item.num"
-            :price="item.good.price"
-            :desc="item.good.desc"
-            :title="item.good.name"
+            :price="item.good&&item.good.price"
+            :desc="item.good&&item.good.desc"
+            :title="item.good&&item.good.name"
             class="goods-card"
-            :thumb="$img.imgBaseUrl+item.good.img"
+            :thumb="item.good&&$img.imgBaseUrl+item.good.img"
           >
               <template #footer>
                 <van-button size="mini" @touchstart='update(item,"sub")'>-</van-button>
